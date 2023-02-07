@@ -3,7 +3,8 @@
 > [BIOL 551 Computer Modeling Spring 2023](https://github.com/Biol551-CSUN/Shimizu)  
 > 
 > [Syllabus and Sdcedule](file:///Users/kentashimizu/Downloads/syllabus_Computer%20Modeling%20Spring%202023_UPDATED.pdf)
-> [Week 2](
+> [Week 2](https://github.com/Biol551-CSUN/Shimizu/tree/main/Week_02)
+> * [Script](
 
 
 ### Little history about myself ##################################################################################
