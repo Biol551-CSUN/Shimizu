@@ -4,15 +4,18 @@
 > 
 > [Syllabus and Schedule](file:///Users/kentashimizu/Downloads/syllabus_Computer%20Modeling%20Spring%202023_UPDATED.pdf)
 > 
-> [Week 2](https://github.com/Biol551-CSUN/Shimizu/tree/main/Week_02)
-> * [Script](https://github.com/Biol551-CSUN/Shimizu/tree/main/Week_02/Script)
-> * [Data](
+ [Week 2](https://github.com/Biol551-CSUN/Shimizu/tree/main/Week_02)
+* [Script](https://github.com/Biol551-CSUN/Shimizu/tree/main/Week_02/Script)
+* [Data](https://github.com/Biol551-CSUN/Shimizu/tree/main/Week_02/data)
+
+[Week 3]
 
 
-### Little history about myself ##################################################################################
+### History ##################################################################################
 1. My youth journeys
    * I was born on 06/02/1999, yes I am a [Gemini](https://en.wikipedia.org/wiki/Gemini_(astrology)), in [Kagoshima, Japan](https://en.wikipedia.org/wiki/Kagoshima).
    * My mom and I came to [America](https://en.wikipedia.org/wiki/United_States) when I was 6 months old.
    * Had a pretty enjoyable life until the [stroke](https://www.cdc.gov/stroke/about.htm#:~:text=A%20stroke%2C%20sometimes%20called%20a,term%20disability%2C%20or%20even%20death.) hit.
-   * 
+ 
+
  
