@@ -1,6 +1,6 @@
 **Hey** everyone my name is [Kenta Shmizu](https://www.instagram.com/p/CNGjeLmDxoH/) a Masters' student in Biology at CSUN, working under [Dr. Maria Elena _de_ Bellard](http://www.csun.edu/~bellard/index.html). Currently I am working on the Nociceptors in shark, mostly in proteins.
 
-> BIOL 551 Computer Modeling Spring 2023
+> [BIOL 551 Computer Modeling Spring 2023]
 
 
 ### Little history about myself ##################################################################################
