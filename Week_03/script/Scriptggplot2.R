@@ -1,31 +1,24 @@
-### Grammer of graphics #####
-aes = ashethics
-ggplot = coding data
-
-
-x= column name 
-y= 
-  
-install.packages("palmerpenguins")
+### I am learning how to ggplot
+### Created by: Nicole Ayala
+### Created on: 2023-02-09
+#####################################################################
+### Load libraries #######
 library(tidyverse)
 library(palmerpenguins)
-
-
-ggplot(data = penguins,
-       mapping = aes(x = bill_depth_mm, # 
-                     y = bill_length_mm,
-                     color = species, 
-                     size = body_mass_g,
-                     alpha = flipper_length_mm)) +
-  geom_point() +
-  labs(title = "Bill depth and length",
-       subtitle = "Dimension for Adelie, Chinstrap, and Gentoo Penguin",
-       x = "Bill depth (mm)", y = "Bill length (mm)",
-       color = "Species",
-       caption = "Source: Palmer Station") +
-  scale_color_viridis_d() +
-  facet_grid(sex~species) +
-  guides(color = FALSE)
-
-ggplot()
-
+library(here)
+library(ggpubr)
+library('devtools')
+### time to use ggplot ###### 
+glimpse(penguins)
+ggplot(data = penguins, 
+       mapping = aes(x = flipper_length_mm, 
+                     y = species,
+                     fill = species)) + 
+  geom_boxplot() +
+  coord_flip() +
+  labs(x = "Flipper Length (mm)", y = "Species", title = "Flipper Length in Various Species") +
+  scale_fill_manual(values = beyonce_palette(3)) +
+  # theme_cleveland() +
+  theme(axis.title = element_text(size = 14,
+                                  color = "red"),
+        panel.background = element_rect(fill = "beige"))
