@@ -22,3 +22,6 @@ ggplot(data = penguins,
   theme(axis.title = element_text(size = 14,
                                   color = "red"),
         panel.background = element_rect(fill = "beige"))
+
+
+ggsave(here("Week_03","Output","penguin2.png"))
