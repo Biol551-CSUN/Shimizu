@@ -108,7 +108,8 @@ hollywood <- penguins%>%
             varience_body_mass = var(body_mass_g, na.rm = TRUE))
 
 
-view(hollywood)
+
+
 
 ggsave()
 
