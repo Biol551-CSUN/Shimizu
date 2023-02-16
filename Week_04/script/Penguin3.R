@@ -127,7 +127,7 @@ northridge <- penguins%>%
 
 
 
-view(northridge)
+northridge
 
 
 
