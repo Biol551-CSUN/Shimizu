@@ -28,18 +28,17 @@ northridge <- penguins%>%
   filter(sex == "female")%>%
   mutate(log_body_mass_g = log(body_mass_g))%>%
   select(species, island, sex, log_body_mass_g)
-  
-  ggplot(data = northridge, 
-         mapping = aes(x=island, 
-                       y =log_body_mass_g)) +
+
+ggplot(data = northridge, 
+       mapping = aes(x=island, 
+                     y =log_body_mass_g)) +
   geom_boxplot() +
   labs(x="island",
        y="log body mass")
-  
-  ggsave(here("Homework","output","Island_and_log_body_mass_output.png"))
+
+ggsave(here("Homework","output","Island_and_log_body_mass_output.png"))
 
 
 
 
 view(northridge)
-
