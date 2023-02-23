@@ -40,5 +40,4 @@ ggsave(here("Homework","output","Island_and_log_body_mass_output.png"))
 
 
 
-
-view(northridge)
+northridge
