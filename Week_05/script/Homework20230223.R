@@ -1,10 +1,11 @@
-### Library data ###
-install.packages("lubridate")
+### 20230223 Homework ###
+### Load Library ###
+
 library(tidyverse)
 library(here)
 library(lubridate)
 
-### Data analysis ###
+### Data Analysis ###
 ymd("2021-02-24")
 datetimes<-c("02/24/2021 22:22:20",
              "02/25/2021 11:21:10",
@@ -15,48 +16,43 @@ month(datetimes, label = TRUE)
 day(datetimes)
 hour(datetimes)
 datetimes + hours(4)
-datetimes + days(2) ## adds 2 days ###
-
-
-
-
-
+datetimes + days(2) 
 
 
 view(CondData)
 
 
-###Data read in ####
 CondData<-read_csv(here("Week_05","Data", "CondData.csv"))
 
 CondData <- CondData %>%
-  mutate(Date = mdy_hm(Date)) %>%  ## correcting date and time format ###
-  round_date(CondData, "10 seconds")   ### rounding to 10s #
+  mutate(date = mdy_hms(date)) %>%  
+  mutate(date = round_date(date, unit = "10 seconds"))   
 
-### read in the Data ###
+view(CondData)
+
+### Data Read in ###
 DepthData<-read_csv(here("Week_05","Data", "DepthData.csv"))
 
 DepthData <- DepthData %>%
-  mutate(Date = mdy_hm(Date)) %>%
-  
-  inner_join(CondData) %>% ##### joining the data #### 
-
-### renaming the new joined data to save confusion ###
-mutate(Date = round_date(Date, "2 minute")) %>%     ### rounding date ###
-  group_by(Date) %>%      ### group by date so can produce plot ###
-  
+  inner_join(CondData) %>% 
+mutate(round_date(date, "2 minute")) %>%    
+  group_by(date) %>%     
   summarise(mean_depth = mean(Depth, na.rm = TRUE),
             mean_temp = mean(TempInSitu, na.rm = TRUE),
             mean_salinity = mean(Salinity, na.rm = TRUE))
 
-ggplot(data = DepthData,  ## produce plot ##
+view(DepthData)
+
+TimeTemp <- ggplot(data = DepthData,  
        mapping = aes(x = Date,
                      y = mean_temp,
                      color = Date))+
-  
   geom_point()+
-  geom_smooth(method = "lm")+ #line of best fit##
-  labs(x = "Time",     #axis titles##
+  geom_smooth(method = "lm")+ 
+  labs(x = "Time",     
        y = "Temp")
+
+TimeTemp
+
 
 ggsave(here("Week_05", "Output", "DepthData_homework.png"))  ##save data##
