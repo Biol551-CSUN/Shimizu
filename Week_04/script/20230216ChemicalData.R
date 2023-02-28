@@ -57,3 +57,4 @@ write_csv(here("Week_04","output","summary.csv"))
 
 
 view(ChemData_clean)
+ChemData
