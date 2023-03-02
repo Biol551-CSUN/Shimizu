@@ -38,15 +38,14 @@ DepthData <- DepthData %>%
 mutate(round_date(date, "2 minute")) %>%    
   group_by(date) %>%     
   summarise(mean_depth = mean(Depth, na.rm = TRUE),
-            mean_temp = mean(TempInSitu, na.rm = TRUE),
+            mean_temp = mean(Temperature, na.rm = TRUE),
             mean_salinity = mean(Salinity, na.rm = TRUE))
 
 view(DepthData)
 
 TimeTemp <- ggplot(data = DepthData,  
-       mapping = aes(x = Date,
-                     y = mean_temp,
-                     color = Date))+
+       mapping = aes(x = date,
+                     y = mean_temp))+
   geom_point()+
   geom_smooth(method = "lm")+ 
   labs(x = "Time",     

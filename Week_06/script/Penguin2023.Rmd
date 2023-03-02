@@ -1,0 +1,53 @@
+---
+title: "Penguin.script"
+author: "Kenta"
+date: "2023-02-28"
+output: 
+  html_document:
+    toc: TRUE
+    toc_float: TRUE
+    theme: darkly
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE,
+                      message = FALSE,
+                      warning = FALSE,
+                      fig.path = TRUE)
+```
+
+# Introduction
+
+Today we are going to work with the penguin data to learn *Rmarkdown*
+
+# Load Libraries
+
+```{r}
+library(tidyverse)
+library(here)
+library(palmerpenguins)
+```
+
+# Inspect the data
+
+```{r}
+glimpse(penguins) #look at penguin data
+```
+
+# Make a plot
+
+Plot the penguin data with bill length by bill depth.
+
+```{r}
+penguins%>%
+  ggplot(aes(x=bill_length_mm,
+             y = bill_depth_mm,
+             color = species)) +
+  geom_point()+
+  geom_smooth(method = "lm") + #add a linear regression
+  labs(x = "Bill length",
+       y = "Bill depth",
+       color = "Species") +
+  theme_grey()
+
+```

@@ -1,0 +1,41 @@
+---
+title: "20230302Homework"
+author: "Kenta"
+date: "2023-03-02"
+output: 
+  html_document:
+    toc: TRUE
+    toc_float: TRUE
+    theme: darkly
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE,
+                      message = FALSE,
+                      warning = FALSE)
+```
+
+#Load libraries
+
+```{r}
+library(tidyverse)
+library(here)
+library(kableExtra)
+library(palmerpenguins)
+```
+
+# Inspect Data
+```{r}
+glimpse(penguins)
+```
+
+# Plot
+
+```{r}
+penguins%>%
+  ggplot(aes(x=body_mass_g,
+             y=sex,
+             color = species)) +
+  geom_point()
+```
+
