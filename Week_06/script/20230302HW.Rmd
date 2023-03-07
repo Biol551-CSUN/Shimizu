@@ -12,7 +12,8 @@ output:
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE,
                       message = FALSE,
-                      warning = FALSE)
+                      warning = FALSE,
+                      fig.path = "../output/")
 ```
 
 #Load libraries
@@ -21,21 +22,42 @@ knitr::opts_chunk$set(echo = TRUE,
 library(tidyverse)
 library(here)
 library(kableExtra)
+library(lubridate)
 library(palmerpenguins)
+library(dplyr)
+library(ggplot2)
 ```
 
 # Inspect Data
 ```{r}
-glimpse(penguins)
+ChemData <- read_csv(here("Week_04","Data","chemicaldata_maunalua.csv")) 
 ```
 
 # Plot
 
 ```{r}
-penguins%>%
-  ggplot(aes(x=body_mass_g,
-             y=sex,
-             color = species)) +
-  geom_point()
+view(ChemData)
+the_difference_between_daytime <- ChemData %>% 
+  drop_na() %>% 
+  separate(col = Tide_time, 
+           into = c("Tide","Time"), 
+           sep = "_", 
+           remove = FALSE) %>%
+  pivot_longer(cols = Temp_in:percent_sgd, 
+               names_to = "Variables", 
+               values_to = "Values")%>%
+  select(Site, Time, Variables, Values)%>%
+  ggplot(aes(x=Time,
+             y=Values,
+             color=Time))+
+  geom_boxplot()+
+  facet_wrap(~Variables, scales = "free")
+  
+
+
+
+view(the_difference_between_daytime)
+the_difference_between_daytime
+
 ```
 

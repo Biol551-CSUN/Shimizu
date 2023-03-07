@@ -31,6 +31,8 @@ glimpse(penguins)
 
 # Making plot
 ```{r penguin, fig.asp=1.2, fig.align='center', fig.cap="This my penguin figure"}
+
+
 penguins%>%
   ggplot(aes(x=bill_length_mm,
              y = bill_depth_mm,
