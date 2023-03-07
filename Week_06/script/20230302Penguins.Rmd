@@ -32,7 +32,12 @@ glimpse(penguins)
 # Making plot
 ```{r penguin, fig.asp=1.2, fig.align='center', fig.cap="This my penguin figure"}
 
+ymd("2021-02-24")
+datetimes<-c("02/24/2021 22:22:20",
+             "02/25/2021 11:21:10",
+             "02/26/2021 8:01:52")
 
+datetimes <- mdy_hms (datetimes)
 penguins%>%
   ggplot(aes(x=bill_length_mm,
              y = bill_depth_mm,
