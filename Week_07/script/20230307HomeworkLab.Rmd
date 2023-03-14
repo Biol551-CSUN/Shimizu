@@ -1,0 +1,83 @@
+---
+title: "20230307Homework"
+author: "Kenta"
+date: "2023-03-07"
+output: 
+  html_document:
+    toc: TRUE
+    toc_float: TRUE
+    theme: darkly
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE,
+                      message = FALSE,
+                      warning = FALSE,
+                      fig.path="../output/")
+```
+
+# Loading Library
+```{r}
+library(tidyverse)
+library(here)
+library(kableExtra)
+library(maps)
+library(mapdata)
+library(mapproj)
+library(dplyr)
+#read in the data
+catdata<- read_csv(here("Week_07","data","cats_uk.csv"))
+UK<-map_data("world", region = "UK")
+catlonglat<- catdata%>%
+  drop_na()%>%
+  mutate(long = location_long, 
+           lat = location_lat)
+
+view(catlonglat)
+```
+
+
+# Viewing the data
+
+```{r}
+view(catdata)
+head(catdata)
+```
+
+# Plot
+
+```{r}
+UKmap <- ggplot()+
+  geom_polygon(data = UK,
+               aes(x=long,
+                   y=lat,
+                   group=group))+
+  coord_map()
+
+UKmap
+```
+
+```{r}
+where_do_cats_live<- catlonglat%>%
+  select(long, lat, tag_id)%>%
+  inner_join(UK)    
+
+head(where_do_cats_live)
+
+ggplot()+
+  geom_polygon(data = UK,
+             aes(x =long,
+                 y= lat,
+                 group=group),
+             color="pink") +
+  coord_map()+
+  geom_point(data = catlonglat,
+             aes(x = long,
+             y= lat,
+             color="where the cats were found"))+
+  scale_x_continuous(limits = c(-6,-3)) + 
+  scale_y_continuous(limits = c(50,51))
+  
+  
+```
+

@@ -68,7 +68,7 @@ the_difference_between_daytime %>%
   summarise(Variablesmean = mean(Variables, na.rm = TRUE)) %>%
   kbl() %>%
   kable_classic() %>%
-  row_spec(2, bold = T, color = "white", background = "red") %>%
+  row_spec(2, bold = T, color = "white", background = "red")%>%
   kable_styling(full_width = FALSE)
 ```
 
