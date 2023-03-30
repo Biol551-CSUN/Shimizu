@@ -1,0 +1,135 @@
+---
+title: "Goodplotbadplot"
+author: "Kenta"
+date: "2023-03-28"
+output: 
+  html_document:
+    toc: TRUE
+    toc_float: TRUE
+    theme: darkly
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE,
+                      message = FALSE,
+                      warning = FALSE,
+                      fig.path="../output/")
+```
+
+# Loading Library
+
+```{r}
+library(tidyverse)
+library(here)
+library(dplyr)
+library(kableExtra)
+library(maps)
+library(mapdata)
+library(mapproj)
+library(patchwork)
+library(ggrepel)
+library(gganimate)
+library(magick)
+library("ggplot2")
+library("ggimage")
+```
+
+# Data
+
+```{r}
+feederwatch <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2023/2023-01-10/PFW_2021_public.csv')
+site_data <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2023/2023-01-10/PFW_count_site_data_public_2021.csv')
+view(feederwatch)
+```
+
+# Badplot
+```{r}
+usa<-map_data("usa")
+
+Badplot<- ggplot()+
+  geom_polygon(data = usa, 
+               aes(x = long,
+                   y = lat,
+                   group = group, 
+                   fill = region),
+               color = "black")+
+  theme_minimal()+
+  guides(fill = FALSE)+
+  theme(panel.background = element_rect(fill = "lightblue"))+
+  geom_point(data= feederwatch,
+             aes(x = longitude,
+             y= latitude,
+             color="Where the bird were found"))+
+transition_states(Day, 
+                    transition_length = 0.5, 
+                    state_length = 0.1)+
+  ease_aes("sine-in-out")+
+  ggtitle('Day: {closest_state}')+
+  labs(x="long",
+       y="lat")+
+  theme(axis.title = element_text(size=200,
+                                  color="red"),
+        panel.background = element_rect(fill="gray"), 
+        panel.grid = element_line(color="blue"))
+
+Badplot
+```
+
+# Explanation for bad plot
+
+* The axis titles too large and in red which might cause some confusion for color-blind people  
+* The panel backgrounds gray instead of blue like the ocean
+* Hard to see where the points are located 
+* The axis grids blue which makes this harder to see
+* The separation states are in days instead of years or months
+
+
+# Goodplot
+
+```{r}
+
+houfinFeederwatch<- feederwatch%>%
+  drop_na%>%
+  subset(species_code == "houfin")
+
+states<-map_data("state")  
+
+Goodplot<- ggplot()+
+  geom_polygon(data = states, 
+               aes(x = long,
+                   y = lat,
+                   group = group, 
+                   fill = region))+
+  theme_minimal()+
+  guides(fill = FALSE)+
+  theme(panel.background = element_rect(fill = "lightblue"))+
+  geom_point(data= houfinFeederwatch,
+             aes(x = longitude,
+             y= latitude,
+             color=houfin_location),
+             color="black")+
+transition_states(Year, 
+                    transition_length = 2, 
+                    state_length = 1)+
+  ease_aes("sine-in-out")+
+  ggtitle('Year: {closest_state}')+
+  labs(x="Longitude",
+       y="Latitude")+
+  scale_x_continuous(limits = c(-130,-65)) + 
+  scale_y_continuous(limits = c(25,50))+
+  theme(legend.position = "bottom")+
+  anim_save(here("Good_plot_bad_plot","output","goodplot.gif"))
+  
+
+Goodplot
+```
+
+# Explanation for good plot
+
+* The states are divided for easier view of where the birds are 
+* Only limited to species to Houfin since there were too many birds to put in the graph
+* Limited the x and y axis so we can view the US more clearly
+* Wrote the axis title more clearly
+* Changed the background color of the graph to blue 
+* Made the transition animation to years 
+* Put the position of legend to bottom for clarity 

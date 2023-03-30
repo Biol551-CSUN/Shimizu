@@ -1,13 +1,13 @@
 {
     "sortOrder": [
         {
-            "columnIndex": 1,
+            "columnIndex": 2,
             "ascending": true
         },
         {
-            "columnIndex": 2,
-            "ascending": false
+            "columnIndex": 1,
+            "ascending": true
         }
     ],
-    "path": "~/Desktop/Shimizu/Week_07/script"
+    "path": "~/Desktop/Shimizu/Good_plot_bad_plot/output"
 }
