@@ -16,6 +16,7 @@ p1<-penguins%>%
 p1
 
 
+
 #plot 2
 
 p2<-penguins%>%
